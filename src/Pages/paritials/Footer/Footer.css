@@ -1,0 +1,33 @@
+/* Footer */
+.footer{
+    background: #2c2c2c;
+}
+.footer .inner-item{
+    margin-top: 20px;
+}
+.footer .inner-item img{
+    width: 50%;
+}
+.footer .inner-item p{
+    color: #fff;
+    font-size: 12px;
+}
+.footer .inner-item span{
+    font-size: 13px;
+    color: #ccc;
+    font-weight: 600;
+}
+.footer .inner-item .social ul{
+    list-style: none;
+    display: flex;
+    justify-content: flex-start;
+}
+.footer .inner-item .social ul li{
+    margin: 0 8px;
+}
+.footer .inner-item .social i{
+    font-size: 25px;
+    color: #fff;
+}
+
+/* End Footer */
