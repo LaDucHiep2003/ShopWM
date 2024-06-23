@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+/* Product */
+body{
+    font-family: "Open Sans", sans-serif;
+}
+img{
+    object-fit: cover;
+}
+.section-product .header-product{
+    padding: 5px 10px;
+}
+
+.section-product .inner-products{
+    margin-top: 20px;
+}
+
+.table-product{
+    background: #86c8c8a6;
+    width: 100%;
+}
+
+a{
+    text-decoration: none !important;
+}
+.table-product thead th,
+.table-product tbody td{
+    padding: 3px 15px;
+    max-width: 180px;
+    text-align: center;
+    border-bottom: 2px solid #d94141;
+}
+
+.table-product tbody button{
+    color: #fff;
+    width: 100%;
+    background-color: #9256b9;
+    margin: 5px 0;
+    cursor: pointer;
+}
+
+.table-product tbody img{
+    width: 40%;
+}
+
+
+.table-product tbody span{
+    padding: 2px;
+    background-color: #a980c0;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.container-control{
+    display: flex;
+    justify-content: flex-start;
+}
+
+.container-control button{
+    background-color: #b08888;
+    color: #fff;
+    padding: 3px;
+    border: 0;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+}

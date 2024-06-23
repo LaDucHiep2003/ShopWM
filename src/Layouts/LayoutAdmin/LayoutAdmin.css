@@ -1,5 +1,6 @@
 
-main{
+.Main-Admin{
     width: calc(100% - 85px);
     float: right;
+    background: rgb(241, 241, 241);
 }

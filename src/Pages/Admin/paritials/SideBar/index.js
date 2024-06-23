@@ -6,7 +6,7 @@ function SideBar() {
             <aside className="sidebar">
                 <div className="sidebar-header">
                     <img src="https://www.codingnepalweb.com/demos/create-sidebar-menu-html-css-only/images/logo.png" alt="logo" />
-                    <h2>CodingLab</h2>
+                    <h2>Admin</h2>
                 </div>
                 <ul className="sidebar-links">
                     <h4>

@@ -17,3 +17,28 @@ export const post = async (patch, option) => {
     const result = response.json()
     return result
 }
+export const del = async (patch, option) => {
+    const response = await fetch(API_DOMAIN + patch, {
+        method : "POST",
+        headers : {
+            Accept : "appliction/json",
+            "Content-Type" : "application/json"
+        },
+        body : JSON.stringify(option)
+    });
+    const result = response.json()
+    return result
+}
+
+export const patch = async (patch, option) => {
+    const response = await fetch(API_DOMAIN + patch, {
+        method : "PATCH",
+        headers : {
+            Accept : "application/json",
+            "Content-Type" : "application/json"
+        },
+        body : JSON.stringify(option)
+    });
+    const result = response.json()
+    return result
+}

@@ -9,7 +9,9 @@ function LayoutDefault() {
         <>
             <Header />
             <main>
-                <Outlet />
+                <div className="Main-Admin">
+                    <Outlet />
+                </div>              
             </main>
             <SideBar />
         </>
