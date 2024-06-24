@@ -112,8 +112,8 @@ function Products() {
                                                         )}
                                                     </td>
                                                     <td>
-                                                        <a href='/admin/products' className='btn btn-secondary btn-sm mr-1'> <b>Chi tiết</b></a>
-                                                        <a href='/admin/products' className='btn btn-warning btn-sm'> <b>Sửa</b></a>
+                                                        <Link to={`/admin/products/detail/${item._id}`} className='btn btn-secondary btn-sm mr-1'> <b>Chi tiết</b></Link>
+                                                        <Link to={`/admin/products/edit/${item._id}`} className='btn btn-warning btn-sm'> <b>Sửa</b></Link>
                                                         <button onClick={() => handleDelete(item._id)} className='btn btn-danger btn-sm'> <b>Xóa</b> </button>
                                                     </td>
                                                 </tr>

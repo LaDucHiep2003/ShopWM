@@ -5,6 +5,11 @@ export const getProductList = async () => {
     return result;
 }
 
+export const getProductDetail = async (id) => {
+    const result = await get(`product/detail/${id}`);
+    return result;
+}
+
 export const createProduct = async (option) => {
     const result = await post("product/create",option);
     return result;
@@ -12,6 +17,11 @@ export const createProduct = async (option) => {
 
 export const changeStatus = async (id, option) => {
     const result = patch(`product/change-status/${id}`, option)
+    return result;
+}
+
+export const editProduct = async (id, option) => {
+    const result = patch(`product/edit/${id}`, option)
     return result;
 }
 

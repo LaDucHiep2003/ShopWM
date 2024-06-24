@@ -5,6 +5,8 @@ import Error404 from '../Pages/Error404'
 import DashBoard from '../Pages/Admin/DashBoard'
 import Products from "../Pages/Admin/Products/Index";
 import CreateProduct from "../Pages/Admin/Products/CreateProduct";
+import EditProduct from "../Pages/Admin/Products/EditProduct";
+import DetailProduct from "../Pages/Admin/Products/DetailProduct";
 
 export const routes = [
     {
@@ -36,6 +38,14 @@ export const routes = [
             {
                 path : "products/create",
                 element : <CreateProduct />
+            },
+            {
+                path : "products/edit/:id",
+                element : <EditProduct />
+            },
+            {
+                path : "products/detail/:id",
+                element : <DetailProduct />
             }
         ]
     }
