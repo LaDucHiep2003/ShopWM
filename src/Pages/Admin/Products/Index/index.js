@@ -4,6 +4,11 @@ import './index.css'
 
 function Products() {
     const [product, setProduct] = useState([])
+    const [status, setStatus] = useState(false)
+
+    const handleReload = () =>{
+        setStatus = (!status)
+    }
 
     useEffect(() => {
         const fetchApi = async () => {
@@ -11,13 +16,15 @@ function Products() {
             setProduct(result)
         }
         fetchApi()
-    }, [])
+    }, [handleReload])
 
-    const handleChangeStatus = async (id,status) =>{
-        const fetchApi = async () => {
-            const result = await changeStatus(id, status)
+    const handleChangeStatus = async (id, status) => {
+        const newStatus = status === "active" ? "inactive" : "active"
+
+        const result = await changeStatus(id, {status : newStatus})
+        if (result) {
+            console.log(result);
         }
-        fetchApi()
     }
 
     return (
@@ -76,13 +83,13 @@ function Products() {
                                                         {idx}
                                                     </td>
                                                     <td>
-                                                        <img 
+                                                        <img
                                                             src={item.thumbnail}
                                                             alt={item.title}
                                                         />
                                                     </td>
                                                     <td>
-                                                         {item.title}
+                                                        {item.title}
                                                     </td>
                                                     <td>
                                                         {item.price}$
@@ -94,7 +101,7 @@ function Products() {
                                                         {item.status === "active" ? (
                                                             <button onClick={() => handleChangeStatus(item._id, item.status)} className='badge bg-success'> Hoạt động </button>
                                                         ) : (
-                                                            <button className='badge bg-danger'> Dừng hoạt động</button>
+                                                            <button onClick={() => handleChangeStatus(item._id, item.status)} className='badge bg-danger'> Dừng hoạt động</button>
                                                         )}
                                                     </td>
                                                     <td>

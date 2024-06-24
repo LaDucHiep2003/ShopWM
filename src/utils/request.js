@@ -7,24 +7,19 @@ export const get = async (patch) => {
 }
 export const post = async (patch, option) => {
     const response = await fetch(API_DOMAIN + patch, {
-        method : "POST",
-        headers : {
-            Accept : "appliction/json",
-            "Content-Type" : "application/json"
+        method: "POST",
+        headers: {
+            Accept: "appliction/json",
+            "Content-Type": "application/json"
         },
-        body : JSON.stringify(option)
+        body: JSON.stringify(option)
     });
     const result = response.json()
     return result
 }
-export const del = async (patch, option) => {
+export const del = async (patch) => {
     const response = await fetch(API_DOMAIN + patch, {
-        method : "POST",
-        headers : {
-            Accept : "appliction/json",
-            "Content-Type" : "application/json"
-        },
-        body : JSON.stringify(option)
+        method: "DELETE",
     });
     const result = response.json()
     return result
@@ -32,13 +27,13 @@ export const del = async (patch, option) => {
 
 export const patch = async (patch, option) => {
     const response = await fetch(API_DOMAIN + patch, {
-        method : "PATCH",
-        headers : {
-            Accept : "application/json",
-            "Content-Type" : "application/json"
+        method: "PATCH",
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
         },
-        body : JSON.stringify(option)
+        body: JSON.stringify(option)
     });
-    const result = response.json()
+    const result = await response.json()
     return result
 }
