@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react';
-import { changeStatus, getProductList } from '../../../../service/productsService';
+import { changeStatus, deleteProduct, getProductList } from '../../../../service/productsService';
 import './index.css'
+import { Link } from 'react-router-dom';
+
 
 function Products() {
     const [product, setProduct] = useState([])
     const [status, setStatus] = useState(false)
 
-    const handleReload = () =>{
+    const handleReload = () => {
         setStatus = (!status)
     }
 
@@ -21,9 +23,16 @@ function Products() {
     const handleChangeStatus = async (id, status) => {
         const newStatus = status === "active" ? "inactive" : "active"
 
-        const result = await changeStatus(id, {status : newStatus})
+        const result = await changeStatus(id, { status: newStatus })
         if (result) {
             console.log(result);
+        }
+    }
+
+    const handleDelete = async (id) => {
+        const result = await deleteProduct(id);
+        if (result) {
+            console.log("ok");
         }
     }
 
@@ -41,13 +50,11 @@ function Products() {
                         </div>
                         <div className='row'>
                             <div className='col-6'>Danh sách sản phẩm</div>
+                            <div className='col-6'>
+                                <Link to= '/admin/products/create' className='btn btn-success btn-sm'><b>+ Thêm sản phẩm</b></Link>
+                            </div>
                         </div>
-                        <div className='col-3'>
 
-                        </div>
-                        <div className='col-3'>
-                            <button className='inner-button-add-pruduct'>+ Thêm sản phẩm</button>
-                        </div>
                     </div>
                 </div>
                 <div className='inner-products bg-white'>
@@ -107,7 +114,7 @@ function Products() {
                                                     <td>
                                                         <a href='/admin/products' className='btn btn-secondary btn-sm mr-1'> <b>Chi tiết</b></a>
                                                         <a href='/admin/products' className='btn btn-warning btn-sm'> <b>Sửa</b></a>
-                                                        <a href='/admin/products' className='btn btn-danger btn-sm ml-2'> <b>Xóa</b> </a>
+                                                        <button onClick={() => handleDelete(item._id)} className='btn btn-danger btn-sm'> <b>Xóa</b> </button>
                                                     </td>
                                                 </tr>
 

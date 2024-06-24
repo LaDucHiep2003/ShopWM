@@ -1,7 +1,12 @@
-import { del, get, patch } from "../utils/request"
+import { del, get, patch, post } from "../utils/request"
 
 export const getProductList = async () => {
-    const result = get("product");
+    const result = await get("product");
+    return result;
+}
+
+export const createProduct = async (option) => {
+    const result = await post("product/create",option);
     return result;
 }
 
