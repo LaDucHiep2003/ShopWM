@@ -1,16 +1,16 @@
 import { useEffect, useState } from 'react';
-import { changeStatus, deleteProduct, getProductList } from '../../../../service/productsService';
+import { changeStatus, deleteProduct, getProductList, statusProduct } from '../../../../service/productsService';
 import './index.css'
+import { FaSearch } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 
 
 function Products() {
     const [product, setProduct] = useState([])
     const [status, setStatus] = useState(false)
+    const [dataSearch, setDataSearch] = useState([])
 
-    const handleReload = () => {
-        setStatus = (!status)
-    }
+
 
     useEffect(() => {
         const fetchApi = async () => {
@@ -18,14 +18,14 @@ function Products() {
             setProduct(result)
         }
         fetchApi()
-    }, [handleReload])
+    }, [])
 
     const handleChangeStatus = async (id, status) => {
         const newStatus = status === "active" ? "inactive" : "active"
 
         const result = await changeStatus(id, { status: newStatus })
         if (result) {
-            console.log(result);
+
         }
     }
 
@@ -35,6 +35,25 @@ function Products() {
             console.log("ok");
         }
     }
+
+    const hangeleStatus = async (status) => {
+        const result = await statusProduct(status)
+        if(result){
+            console.log(result);
+            setProduct(result)
+        }
+    }
+    console.log("1");
+
+    const handleChange = (e) => {
+        const name = e.target.name
+        const value = e.target.value
+
+        setDataSearch({
+            [name] : value
+        })
+    }
+    console.log(dataSearch);
 
     return (
         <>
@@ -60,6 +79,19 @@ function Products() {
                 <div className='inner-products bg-white'>
                     <div className='container-fluid'>
                         <div className='inner-main'>
+                            <div className='row mb-3'>
+                                <div className='col-3'>
+                                    <div className='inner-search d-flex'>
+                                        <input onChange={handleChange} type="text" className="form-control" placeholder="Tìm kiếm sản phẩm"/>
+                                        <button className='btn btn-search'><FaSearch /></button>
+                                    </div>
+                                </div>
+                                <div className='col-4'>
+                                    <button onClick={() => hangeleStatus("")} className='badge bg-success'>Tất cả</button>
+                                    <button onClick={() => hangeleStatus("active")} className='badge bg-success ml-2'>Hoạt động</button>
+                                    <button onClick={() => hangeleStatus("inactive")} className='badge bg-success ml-2'>Dừng hoạt động</button>
+                                </div>
+                            </div>
                             <div className='row'>
                                 <div className='col-12'>
                                     <table className='table-product'>
@@ -79,7 +111,7 @@ function Products() {
                                         </thead>
                                         <tbody>
 
-                                            {product.map((item, idx) => (
+                                            {product.length > 0 && product.map((item, idx) => (
                                                 <tr key={idx}>
                                                     <td>
                                                         <input type="checkbox"

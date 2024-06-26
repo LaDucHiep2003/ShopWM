@@ -10,10 +10,16 @@ export const getProductDetail = async (id) => {
     return result;
 }
 
+export const statusProduct = async (status) => {
+    const result = await get(`product?status=${status}`);
+    return result;
+}
+
 export const createProduct = async (option) => {
     const result = await post("product/create",option);
     return result;
 }
+
 
 export const changeStatus = async (id, option) => {
     const result = patch(`product/change-status/${id}`, option)

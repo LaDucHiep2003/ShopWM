@@ -62,3 +62,8 @@ a{
     cursor: pointer;
     border-radius: 5px;
 }
+
+.inner-products .inner-main .inner-search button{
+    background: #9256b9;
+    color: #fff;
+}
