@@ -7,6 +7,7 @@ import Products from "../Pages/Admin/Products/Index";
 import CreateProduct from "../Pages/Admin/Products/CreateProduct";
 import EditProduct from "../Pages/Admin/Products/EditProduct";
 import DetailProduct from "../Pages/Admin/Products/DetailProduct";
+import Category from "../Pages/Admin/Category/Index"
 
 export const routes = [
     {
@@ -46,6 +47,10 @@ export const routes = [
             {
                 path : "products/detail/:id",
                 element : <DetailProduct />
+            },
+            {
+                path : "products-category",
+                element : < Category />
             }
         ]
     }

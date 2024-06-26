@@ -23,6 +23,11 @@ export const getSortProduct = async (key, value) => {
     const result = await get(`product?sortKey=${key}&sortValue=${value}`);
     return result;
 }
+
+export const getCategoryList = async () => {
+    const result = await get("product-category");
+    return result;
+}
 export const createProduct = async (option) => {
     const result = await post("product/create",option);
     return result;

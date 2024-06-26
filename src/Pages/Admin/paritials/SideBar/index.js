@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import './SideBar.css'
 import './css2.css'
 function SideBar() {
@@ -14,15 +15,18 @@ function SideBar() {
                         <div className="menu-separator"></div>
                     </h4>
                     <li>
-                        <a href="#">
-                            <span className="material-symbols-outlined"> dashboard </span>Dashboard</a>
+                        <Link to="/admin/dashboard" >
+                            <span className="material-symbols-outlined"> dashboard </span>Dashboard</Link>
                     </li>
                     <li>
-                        <a href="#"><span className="material-symbols-outlined"> overview </span>Overview</a>
+                        <Link to="/admin/products"><span className="material-symbols-outlined"> overview </span>Product</Link>
                     </li>
                     <li>
-                        <a href="#"><span className="material-symbols-outlined"> monitoring </span>Analytic</a>
+                        <Link to="/admin/products-category"><span className="material-symbols-outlined"> overview </span>Category</Link>
                     </li>
+                    {/* <li>
+                        <Link to="/admin/products"><span className="material-symbols-outlined"> monitoring </span>Analytic</Link>
+                    </li> */}
                     <h4>
                         <span className='inner-title'>General</span>
                         <div className="menu-separator"></div>

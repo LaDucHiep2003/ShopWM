@@ -1,13 +1,12 @@
+import { Link } from "react-router-dom";
 import { useEffect, useState } from 'react';
-import { getProductList, getSearchProduct, getSortProduct, statusProduct } from '../../../../service/productsService';
-import './index.css'
+import { getCategoryList, getProductList, getSearchProduct, getSortProduct, statusProduct } from '../../../../service/productsService';
 import { FaSearch } from "react-icons/fa";
-import { Link } from 'react-router-dom';
-import ProductList from './ProductList';
+import CategoryList from './CategoryList'
 
 
-function Products() {
-    const [product, setProduct] = useState([])
+function Category() {
+    const [category, setCategory] = useState([])
     const [status, setStatus] = useState(false)
     const [dataSearch, setDataSearch] = useState([])
 
@@ -18,41 +17,40 @@ function Products() {
 
     useEffect(() => {
         const fetchApi = async () => {
-            const result = await getProductList()
-            setProduct(result)
+            const result = await getCategoryList()
+            setCategory(result)
         }
         fetchApi()
     }, [])
+    console.log(category);
 
     const hangeleStatus = async (status) => {
-        const result = await statusProduct(status)
-        if (result) {
-            console.log(result);
-            setProduct(result)
-        }
+        // const result = await statusProduct(status)
+        // if (result) {
+        //     console.log(result);
+        //     setProduct(result)
+        // }
     }
 
     const handleChange = (e) => {
-        const value = e.target.value
+        // const value = e.target.value
 
-        setDataSearch(value)
+        // setDataSearch(value)
     }
     const handleSearch = async () => {
-        const result = await getSearchProduct(dataSearch)
-        if (result) {
-            console.log(result);
-        }
+        // const result = await getSearchProduct(dataSearch)
+        // if (result) {
+        //     console.log(result);
+        // }
     }
-
     const handleChangePosition = async (e) => {
-        const [key, value] = e.target.value.split(',');
-        console.log(key, value);
-        const result = await getSortProduct(key, value)
-        if (result) {
-            console.log(result);
-        }
+        // const [key, value] = e.target.value.split(',');
+        // console.log(key, value);
+        // const result = await getSortProduct(key, value)
+        // if (result) {
+        //     console.log(result);
+        // }
     }
-
     return (
         <>
             <div className='section-product'>
@@ -66,9 +64,9 @@ function Products() {
                             </div>
                         </div>
                         <div className='row'>
-                            <div className='col-6'>Danh sách sản phẩm</div>
+                            <div className='col-6'>Danh Sách Danh Mục Sản Phẩm</div>
                             <div className='col-6'>
-                                <Link to='/admin/products/create' className='btn btn-success btn-sm'><b>+ Thêm sản phẩm</b></Link>
+                                <Link to='/admin/products/create' className='btn btn-success btn-sm'><b>+ Thêm Danh Mục</b></Link>
                             </div>
                         </div>
 
@@ -80,7 +78,7 @@ function Products() {
                             <div className='row mb-3 align-items-center'>
                                 <div className='col-3'>
                                     <div className='inner-search d-flex'>
-                                        <input onChange={handleChange} type="text" className="inner-input" placeholder="Tìm kiếm sản phẩm" />
+                                        <input onChange={handleChange} type="text" className="inner-input" placeholder="Tìm kiếm danh mục" />
                                         <button className='inner-button' onClick={handleSearch}><FaSearch /></button>
                                     </div>
                                 </div>
@@ -113,8 +111,7 @@ function Products() {
                                                 </th>
                                                 <th>Stt</th>
                                                 <th>Hình ảnh</th>
-                                                <th>Tiêu đề</th>
-                                                <th>Giá</th>
+                                                <th>Tên</th>
                                                 <th>Vị trí</th>
                                                 <th>Trạng thái</th>
                                                 <th>Hành động</th>
@@ -122,8 +119,8 @@ function Products() {
                                         </thead>
                                         <tbody>
 
-                                            {product.length > 0 && product.map((item, idx) => (
-                                                <ProductList key={item.id} item={item} idx={idx} onReload={reload} />
+                                            {category.length > 0 && category.map((item, idx) => (
+                                                <CategoryList item={item} idx ={idx}/>
                                             ))}
                                         </tbody>
                                     </table>
@@ -137,4 +134,4 @@ function Products() {
     )
 }
 
-export default Products
+export default Category;
