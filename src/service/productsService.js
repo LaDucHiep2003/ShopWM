@@ -14,7 +14,15 @@ export const statusProduct = async (status) => {
     const result = await get(`product?status=${status}`);
     return result;
 }
+export const getSearchProduct = async (word) => {
+    const result = await get(`product?keyword=${word}`);
+    return result;
+}
 
+export const getSortProduct = async (key, value) => {
+    const result = await get(`product?sortKey=${key}&sortValue=${value}`);
+    return result;
+}
 export const createProduct = async (option) => {
     const result = await post("product/create",option);
     return result;
