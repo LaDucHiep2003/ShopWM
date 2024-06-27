@@ -1,10 +1,37 @@
-import { useState } from "react"
-import { createCategory } from "../../../../service/productsService"
+import React, { useEffect, useState } from "react"
+import { createCategory, getCategoryList } from "../../../../service/productsService"
 import { Link, useNavigate } from 'react-router-dom';
 
 function CreateCategory() {
     const [data, setData] = useState([])
+    const [category, setCategory] = useState([])
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const fetchApi = async () => {
+            const result = await getCategoryList()
+            setCategory(result)
+        }
+        fetchApi()
+    }, [])
+
+    const renderOptions = (items, level = 1, parentId = "") => {
+        return items.map((item) => {
+            const prefix = Array(level + 1).join("--");
+            const isSelected = item.id === parentId;
+
+            return (
+                <React.Fragment key={item._id}>
+                    <option value={item._id} selected={isSelected}>
+                        {prefix}{item.name}
+                    </option>
+                    {item.children && item.children.length > 0 && (
+                        renderOptions(item.children, level + 1, parentId)
+                    )}
+                </React.Fragment>
+            );
+        });
+    };
 
     const handleChange = (e) => {
         const name = e.target.name
@@ -12,7 +39,7 @@ function CreateCategory() {
 
         setData({
             ...data,
-            [name] : value
+            [name]: value
         })
     }
 
@@ -21,10 +48,12 @@ function CreateCategory() {
         e.preventDefault()
         const result = await createCategory(data)
 
-        if(result){
+        if (result) {
             navigate(-1);
         }
     }
+    
+    console.log(category);
     return (
         <>
             <div className='section-product'>
@@ -53,6 +82,14 @@ function CreateCategory() {
                                 <div className="form-group">
                                     <label htmlFor="name">Tên</label>
                                     <input type="text" className="form-control" id="name" name="name" onChange={handleChange} />
+                                </div>
+
+                                <div className="form-group">
+                                    <label htmlFor="parent_id">Danh mục cha</label>
+                                    <select id="parent_id" name="parent_id" className="form-control" onChange={handleChange}>
+                                        <option value="" >Chon danh mục cha</option>
+                                        {renderOptions(category)}
+                                    </select>
                                 </div>
 
                                 <div className="form-group">

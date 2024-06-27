@@ -10,6 +10,9 @@ import DetailProduct from "../Pages/Admin/Products/DetailProduct";
 import Category from "../Pages/Admin/Category/Index"
 import CreateCategory from "../Pages/Admin/Category/CreateCategory";
 import EditCategory from "../Pages/Admin/Category/EditCategory";
+import Role from "../Pages/Admin/Role/Index";
+import CreateRole from "../Pages/Admin/Role/CreateRole";
+import EditRole from "../Pages/Admin/Role/EditRole";
 
 export const routes = [
     {
@@ -61,7 +64,19 @@ export const routes = [
             {
                 path : "products-category/edit/:id",
                 element : < EditCategory />
-            }
+            },
+            {
+                path : "roles",
+                element : < Role />
+            },
+            {
+                path : "roles/create",
+                element : < CreateRole />
+            },
+            {
+                path : "roles/edit/:id",
+                element : < EditRole />
+            },
         ]
     }
 ]

@@ -114,7 +114,7 @@ function Category() {
                                         <tbody>
 
                                             {category.length > 0 && category.map((item, idx) => (
-                                                <CategoryList item={item} idx ={idx}/>
+                                                <CategoryList key={item._id} item={item} idx ={idx}/>
                                             ))}
                                         </tbody>
                                     </table>

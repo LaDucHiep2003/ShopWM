@@ -1,57 +1,55 @@
 import { useEffect, useState } from 'react';
-import { getProductList, getSearchProduct, getSortProduct, statusProduct } from '../../../../service/productsService';
-import './index.css'
+import { deleteRole, getRoleList} from '../../../../service/productsService';
 import { FaSearch } from "react-icons/fa";
 import { Link } from 'react-router-dom';
-import ProductList from './ProductList';
-import {useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { reload } from '../../../../actions/reload';
 
-
-
-function Products() {
+function Role() {
     const [product, setProduct] = useState([])
     const [dataSearch, setDataSearch] = useState([])
     const reloadState = useSelector(state => state.reloadReducer)
+    const dispatch = useDispatch()
 
 
     useEffect(() => {
         const fetchApi = async () => {
-            const result = await getProductList()
+            const result = await getRoleList()
             setProduct(result)
         }
         fetchApi()
     }, [reloadState])
 
-    const hangeleStatus = async (status) => {
-        const result = await statusProduct(status)
-        if (result) {
-            console.log(result);
-            setProduct(result)
-        }
-    }
-
+    console.log(product);
     const handleChange = (e) => {
-        const value = e.target.value
+        // const value = e.target.value
 
-        setDataSearch(value)
+        // setDataSearch(value)
     }
     const handleSearch = async () => {
-        const result = await getSearchProduct(dataSearch)
-        if (result) {
-            setProduct(result)
-        }
+        // const result = await getSearchProduct(dataSearch)
+        // if (result) {
+        //     setProduct(result)
+        // }
     }
 
     const handleChangePosition = async (e) => {
-        const [key, value] = e.target.value.split(',');
-        console.log(key, value);
-        const result = await getSortProduct(key, value)
-        if (result) {
-            setProduct(result)
-            console.log(result);
-        }
+        // const [key, value] = e.target.value.split(',');
+        // console.log(key, value);
+        // const result = await getSortProduct(key, value)
+        // if (result) {
+        //     setProduct(result)
+        //     console.log(result);
+        // }
     }
 
+    const handleDelete = async (id) => {
+        const result = await deleteRole(id);
+        if (result) {
+            console.log("ok");
+            dispatch(reload())
+        }
+    }
     return (
         <>
             <div className='section-product'>
@@ -67,7 +65,7 @@ function Products() {
                         <div className='row'>
                             <div className='col-6'>Danh sách sản phẩm</div>
                             <div className='col-6'>
-                                <Link to='/admin/products/create' className='btn btn-success btn-sm'><b>+ Thêm sản phẩm</b></Link>
+                                <Link to='/admin/roles/create' className='btn btn-success btn-sm'><b>+ Thêm Nhóm Quyền</b></Link>
                             </div>
                         </div>
 
@@ -82,14 +80,6 @@ function Products() {
                                         <input onChange={handleChange} type="text" className="inner-input" placeholder="Tìm kiếm sản phẩm" />
                                         <button className='inner-button' onClick={handleSearch}><FaSearch /></button>
                                     </div>
-                                </div>
-                                <div className='col-4'>
-                                    <div className='inner-list-status'>
-                                        <button onClick={() => hangeleStatus("")} className='inner-status'>Tất cả</button>
-                                        <button onClick={() => hangeleStatus("active")} className='inner-status ml-2'>Hoạt động</button>
-                                        <button onClick={() => hangeleStatus("inactive")} className='inner-status ml-2'>Dừng hoạt động</button>
-                                    </div>
-
                                 </div>
                                 <div className='col-2'>
                                     <div className='inner-sort'>
@@ -111,18 +101,35 @@ function Products() {
                                                     <input type='checkbox' name="checkall" />
                                                 </th>
                                                 <th>Stt</th>
-                                                <th>Hình ảnh</th>
-                                                <th>Tiêu đề</th>
-                                                <th>Giá</th>
-                                                <th>Vị trí</th>
-                                                <th>Trạng thái</th>
+                                                <th>Mô tả</th>
+                                                <th>Nhóm quyền</th>
                                                 <th>Hành động</th>
                                             </tr>
                                         </thead>
                                         <tbody>
 
                                             {product.length > 0 && product.map((item, idx) => (
-                                                <ProductList key={item._id} item={item} idx={idx}/>
+                                                <tr key={item._id}>
+                                                    <td>
+                                                        <input type="checkbox"
+                                                            name="id"
+                                                            value={item._id} />
+                                                    </td>
+                                                    <td>
+                                                        {idx}
+                                                    </td>
+                                                    <td>
+                                                        {item.title}
+                                                    </td>
+                                                    <td>
+                                                        {item.description}
+                                                    </td>
+                                                    <td>
+                                                        <Link to={`/admin/products/detail/${item._id}`} className='btn btn-secondary btn-sm mr-1'> <b>Chi tiết</b></Link>
+                                                        <Link to={`/admin/roles/edit/${item._id}`} className='btn btn-warning btn-sm'> <b>Sửa</b></Link>
+                                                        <button onClick={() => handleDelete(item._id)} className='btn btn-danger btn-sm'> <b>Xóa</b> </button>
+                                                    </td>
+                                                </tr>
                                             ))}
                                         </tbody>
                                     </table>
@@ -136,4 +143,4 @@ function Products() {
     )
 }
 
-export default Products
+export default Role;

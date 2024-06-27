@@ -32,7 +32,7 @@ function SideBar() {
                         <div className="menu-separator"></div>
                     </h4>
                     <li>
-                        <a href="#"><span className="material-symbols-outlined"> folder </span>Projects</a>
+                        <Link to="/admin/roles"><span className="material-symbols-outlined"> folder </span>Nhóm Quyền</Link>
                     </li>
                     <li>
                         <a href="#"><span className="material-symbols-outlined"> groups </span>Groups</a>
