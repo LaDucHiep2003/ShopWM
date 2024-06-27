@@ -8,6 +8,8 @@ import CreateProduct from "../Pages/Admin/Products/CreateProduct";
 import EditProduct from "../Pages/Admin/Products/EditProduct";
 import DetailProduct from "../Pages/Admin/Products/DetailProduct";
 import Category from "../Pages/Admin/Category/Index"
+import CreateCategory from "../Pages/Admin/Category/CreateCategory";
+import EditCategory from "../Pages/Admin/Category/EditCategory";
 
 export const routes = [
     {
@@ -51,6 +53,14 @@ export const routes = [
             {
                 path : "products-category",
                 element : < Category />
+            },
+            {
+                path : "products-category/create",
+                element : < CreateCategory />
+            },
+            {
+                path : "products-category/edit/:id",
+                element : < EditCategory />
             }
         ]
     }

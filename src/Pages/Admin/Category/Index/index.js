@@ -60,7 +60,7 @@ function Category() {
                         <div className='row'>
                             <div className='col-6'>Danh Sách Danh Mục Sản Phẩm</div>
                             <div className='col-6'>
-                                <Link to='/admin/products/create' className='btn btn-success btn-sm'><b>+ Thêm Danh Mục</b></Link>
+                                <Link to='/admin/products-category/create' className='btn btn-success btn-sm'><b>+ Thêm Danh Mục</b></Link>
                             </div>
                         </div>
 
