@@ -1,14 +1,19 @@
 import { Link } from 'react-router-dom';
 import { changeStatus, deleteProduct} from '../../../../service/productsService';
+import { useDispatch, useSelector } from 'react-redux';
+import {reload} from '../../../../actions/reload'
+
 function ProductList(props) {
-    const { item, idx, onReload } = props
+    const { item, idx } = props
+    const reloadState = useSelector(state => state.reloadReducer)
+    const dispatch = useDispatch()
 
     const handleChangeStatus = async (id, status) => {
         const newStatus = status === "active" ? "inactive" : "active"
 
         const result = await changeStatus(id, { status: newStatus })
         if (result) {
-            onReload()
+           dispatch(reload())
         }
     }
 
@@ -17,6 +22,7 @@ function ProductList(props) {
         const result = await deleteProduct(id);
         if (result) {
             console.log("ok");
+            dispatch(reload())
         }
     }
     return (

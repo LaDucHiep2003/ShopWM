@@ -4,17 +4,15 @@ import './index.css'
 import { FaSearch } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import ProductList from './ProductList';
+import {useSelector } from 'react-redux';
+
 
 
 function Products() {
     const [product, setProduct] = useState([])
-    const [status, setStatus] = useState(false)
     const [dataSearch, setDataSearch] = useState([])
+    const reloadState = useSelector(state => state.reloadReducer)
 
-
-    const reload = () => {
-        setStatus(!status)
-    }
 
     useEffect(() => {
         const fetchApi = async () => {
@@ -22,7 +20,7 @@ function Products() {
             setProduct(result)
         }
         fetchApi()
-    }, [])
+    }, [reloadState])
 
     const hangeleStatus = async (status) => {
         const result = await statusProduct(status)
@@ -40,7 +38,7 @@ function Products() {
     const handleSearch = async () => {
         const result = await getSearchProduct(dataSearch)
         if (result) {
-            console.log(result);
+            setProduct(result)
         }
     }
 
@@ -49,6 +47,7 @@ function Products() {
         console.log(key, value);
         const result = await getSortProduct(key, value)
         if (result) {
+            setProduct(result)
             console.log(result);
         }
     }
@@ -123,7 +122,7 @@ function Products() {
                                         <tbody>
 
                                             {product.length > 0 && product.map((item, idx) => (
-                                                <ProductList key={item.id} item={item} idx={idx} onReload={reload} />
+                                                <ProductList key={item.id} item={item} idx={idx}/>
                                             ))}
                                         </tbody>
                                     </table>
