@@ -1,22 +1,29 @@
 import { Link } from "react-router-dom"
+import { changeStatusCategory, deleteCategory } from "../../../../service/productsService"
+import { useDispatch, useSelector } from "react-redux";
+import {reload} from '../../../../actions/reload'
 
 function CategoryList(props) {
-    const {item, idx} = props
-    const handleChangeStatus = async (id, status) => {
-        // const newStatus = status === "active" ? "inactive" : "active"
+    const {item, idx} = props;
+    const reloadState = useSelector(state => state.reloadReducer)
+    const dispatch = useDispatch()
 
-        // const result = await changeStatus(id, { status: newStatus })
-        // if (result) {
-        //     onReload()
-        // }
+
+    const handleChangeStatus = async (id, status) => {
+        const newStatus = status === "active" ? "inactive" : "active"
+
+        const result = await changeStatusCategory(id, { status: newStatus })
+        if (result) {
+            dispatch(reload())
+        }
     }
 
 
     const handleDelete = async (id) => {
-        // const result = await deleteProduct(id);
-        // if (result) {
-        //     console.log("ok");
-        // }
+        const result = await deleteCategory(id);
+        if (result) {
+            dispatch(reload())
+        }
     }
     return (
         <>

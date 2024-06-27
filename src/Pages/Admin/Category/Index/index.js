@@ -1,19 +1,15 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from 'react';
-import { getCategoryList, getProductList, getSearchProduct, getSortProduct, statusProduct } from '../../../../service/productsService';
+import { getCategoryList, getSortCategory, getStatusCategory, getsearchCategory } from '../../../../service/productsService';
 import { FaSearch } from "react-icons/fa";
 import CategoryList from './CategoryList'
+import { useSelector } from "react-redux";
 
 
 function Category() {
     const [category, setCategory] = useState([])
-    const [status, setStatus] = useState(false)
     const [dataSearch, setDataSearch] = useState([])
-
-
-    const reload = () => {
-        setStatus(!status)
-    }
+    const reloadState = useSelector(state => state.reloadReducer)
 
     useEffect(() => {
         const fetchApi = async () => {
@@ -21,35 +17,33 @@ function Category() {
             setCategory(result)
         }
         fetchApi()
-    }, [])
-    console.log(category);
+    }, [reloadState])
+
 
     const hangeleStatus = async (status) => {
-        // const result = await statusProduct(status)
-        // if (result) {
-        //     console.log(result);
-        //     setProduct(result)
-        // }
+        const result = await getStatusCategory(status)
+        if (result) {
+            setCategory(result)
+        }
     }
 
     const handleChange = (e) => {
-        // const value = e.target.value
-
-        // setDataSearch(value)
+        const value = e.target.value
+        setDataSearch(value)
     }
+
     const handleSearch = async () => {
-        // const result = await getSearchProduct(dataSearch)
-        // if (result) {
-        //     console.log(result);
-        // }
+        const result = await getsearchCategory(dataSearch)
+        if (result) {
+            setCategory(result)
+        }
     }
     const handleChangePosition = async (e) => {
-        // const [key, value] = e.target.value.split(',');
-        // console.log(key, value);
-        // const result = await getSortProduct(key, value)
-        // if (result) {
-        //     console.log(result);
-        // }
+        const [key, value] = e.target.value.split(',');
+        const result = await getSortCategory(key, value)
+        if (result) {
+            setCategory(result)
+        }
     }
     return (
         <>
@@ -58,9 +52,9 @@ function Category() {
                     <div className='header-product'>
                         <div className='row'>
                             <div className="col-12">
-                                <p className='inner-title'>
+                                <h3 className='inner-title'>
                                     ShopWinMart
-                                </p>
+                                </h3>
                             </div>
                         </div>
                         <div className='row'>
@@ -95,8 +89,8 @@ function Category() {
                                         <select className='inner-list-item' onChange={handleChangePosition}>
                                             <option value="position,desc">Vị trí giảm dần</option>
                                             <option value="position,asc">Vị trí tăng dần</option>
-                                            <option value="title,desc">Tiêu đề A - Z</option>
-                                            <option value="title,asc">Tiêu đề Z - A</option>
+                                            <option value="name,desc">Tiêu đề A - Z</option>
+                                            <option value="name,asc">Tiêu đề Z - A</option>
                                         </select>
                                     </div>
                                 </div>

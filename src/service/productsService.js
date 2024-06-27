@@ -1,5 +1,7 @@
 import { del, get, patch, post } from "../utils/request"
 
+
+// Product
 export const getProductList = async () => {
     const result = await get("product");
     return result;
@@ -24,10 +26,6 @@ export const getSortProduct = async (key, value) => {
     return result;
 }
 
-export const getCategoryList = async () => {
-    const result = await get("product-category");
-    return result;
-}
 export const createProduct = async (option) => {
     const result = await post("product/create",option);
     return result;
@@ -46,5 +44,37 @@ export const editProduct = async (id, option) => {
 
 export const deleteProduct = async (id) => {
     const result = del(`product/delete/${id}`)
+    return result;
+}
+
+// Category
+
+export const getCategoryList = async () => {
+    const result = await get("product-category");
+    return result;
+}
+
+export const getsearchCategory = async (word) => {
+    const result = await get(`product-category?keyword=${word}`);
+    return result;
+}
+
+export const getStatusCategory = async (status) => {
+    const result = await get(`product-category?status=${status}`);
+    return result;
+}
+
+export const changeStatusCategory = async (id, option) => {
+    const result = await patch(`product-category/change-status/${id}`, option);
+    return result;
+}
+
+export const getSortCategory = async (sortKey, sortValue) => {
+    const result = await get(`product-category?sortKey=${sortKey}&sortValue=${sortValue}`);
+    return result;
+}
+
+export const deleteCategory = async (id) => {
+    const result = await patch(`product-category/delete/${id}`);
     return result;
 }

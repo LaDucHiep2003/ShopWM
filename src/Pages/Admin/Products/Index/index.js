@@ -59,9 +59,9 @@ function Products() {
                     <div className='header-product'>
                         <div className='row'>
                             <div className="col-12">
-                                <p className='inner-title'>
+                                <h3 className='inner-title'>
                                     ShopWinMart
-                                </p>
+                                </h3>
                             </div>
                         </div>
                         <div className='row'>
