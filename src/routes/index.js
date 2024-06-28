@@ -14,6 +14,8 @@ import Role from "../Pages/Admin/Role/Index";
 import CreateRole from "../Pages/Admin/Role/CreateRole";
 import EditRole from "../Pages/Admin/Role/EditRole";
 import Permissions from "../Pages/Admin/Role/Permissions";
+import Accounts from '../Pages/Admin/Accounts/Index'
+import CreateAccount from "../Pages/Admin/Accounts/CreateAccount";
 
 export const routes = [
     {
@@ -81,6 +83,14 @@ export const routes = [
             {
                 path : "roles/permissions",
                 element : < Permissions />
+            },
+            {
+                path : "accounts",
+                element : < Accounts />
+            },
+            {
+                path : "accounts/create",
+                element : < CreateAccount />
             },
         ]
     }
