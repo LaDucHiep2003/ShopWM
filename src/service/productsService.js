@@ -114,3 +114,14 @@ export const deleteRole = async (id) => {
     const result = await patch(`roles/delete/${id}`);
     return result;
 }
+
+// Permission
+export const getPermissionsList = async () => {
+    const result = await get("roles/permissions");
+    return result;
+}
+
+export const addPermissions = async (option) => {
+    const result = patch(`roles/permissions/addPermissions`, option)
+    return result;
+}

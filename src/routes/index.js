@@ -13,6 +13,7 @@ import EditCategory from "../Pages/Admin/Category/EditCategory";
 import Role from "../Pages/Admin/Role/Index";
 import CreateRole from "../Pages/Admin/Role/CreateRole";
 import EditRole from "../Pages/Admin/Role/EditRole";
+import Permissions from "../Pages/Admin/Role/Permissions";
 
 export const routes = [
     {
@@ -76,6 +77,10 @@ export const routes = [
             {
                 path : "roles/edit/:id",
                 element : < EditRole />
+            },
+            {
+                path : "roles/permissions",
+                element : < Permissions />
             },
         ]
     }

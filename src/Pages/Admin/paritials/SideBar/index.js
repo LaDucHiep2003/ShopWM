@@ -38,7 +38,7 @@ function SideBar() {
                         <a href="#"><span className="material-symbols-outlined"> groups </span>Groups</a>
                     </li>
                     <li>
-                        <a href="#"><span className="material-symbols-outlined"> move_up </span>Transfer</a>
+                        <Link to="/admin/roles/permissions"><span className="material-symbols-outlined"> move_up </span>Phân Quyền</Link>
                     </li>
                     <li>
                         <a href="#"><span className="material-symbols-outlined"> flag </span>All Reports</a>
