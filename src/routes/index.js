@@ -16,6 +16,7 @@ import EditRole from "../Pages/Admin/Role/EditRole";
 import Permissions from "../Pages/Admin/Role/Permissions";
 import Accounts from '../Pages/Admin/Accounts/Index'
 import CreateAccount from "../Pages/Admin/Accounts/CreateAccount";
+import EditAccount from "../Pages/Admin/Accounts/EditAccount";
 
 export const routes = [
     {
@@ -91,6 +92,10 @@ export const routes = [
             {
                 path : "accounts/create",
                 element : < CreateAccount />
+            },
+            {
+                path : "accounts/edit/:id",
+                element : < EditAccount />
             },
         ]
     }

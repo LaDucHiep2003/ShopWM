@@ -16,7 +16,6 @@ function Accounts() {
         fetchApi()
     }, [reloadState])
 
-    console.log(data);
 
 
     const hangeleStatus = async (status) => {
@@ -83,7 +82,7 @@ function Accounts() {
                                         </thead>
                                         <tbody>
                                             {data.map((item, idx) => (
-                                                <tr>
+                                                <tr key={item._id}>
                                                     <td>
                                                         {idx + 1}
                                                     </td>
@@ -112,7 +111,7 @@ function Accounts() {
                                                     </td>
                                                     <td>
                                                         <Link to={`/admin/products/detail/${item._id}`} className='btn btn-secondary btn-sm mr-1'> <b>Chi tiết</b></Link>
-                                                        <Link to={`/admin/products-category/edit/${item._id}`} className='btn btn-warning btn-sm'> <b>Sửa</b></Link>
+                                                        <Link to={`/admin/accounts/edit/${item._id}`} className='btn btn-warning btn-sm'> <b>Sửa</b></Link>
                                                         <button onClick={() => handleDelete(item._id)} className='btn btn-danger btn-sm'> <b>Xóa</b> </button>
                                                     </td>
                                                 </tr>
