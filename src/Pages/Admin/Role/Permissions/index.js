@@ -45,10 +45,15 @@ function Permissions() {
             console.log(result);
         }
     }
+
     const isChecked = (id, permission) => {
         const item = data.find(item => item._id === id);
-        return item ? item.permissions.includes(permission) : false;
+        if(item && item.permissions.includes(permission)){
+            return true;
+        }
+        return false;
     };
+
 
     return (
         <>
@@ -78,7 +83,7 @@ function Permissions() {
                             <div className="row">
                                 <div className="col-12">
                                     <div className="inner-button-right">
-                                        <button className="btn btn-success btn-sm">Cập nhật</button>
+                                        <button className="btn btn-success btn-sm" onClick={handleUpdate}>Cập nhật</button>
                                     </div>
 
                                 </div>
@@ -100,7 +105,10 @@ function Permissions() {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <td colSpan="4">Danh sách sản phẩm</td>
+                                            <tr>
+                                                <td colSpan="4">Danh sách sản phẩm</td>
+                                            </tr>
+                                            
                                             <tr >
                                                 <td>Xem</td>
                                                 {data.map((item) => (
@@ -117,7 +125,10 @@ function Permissions() {
                                                 <td>Thêm mới</td>
                                                 {data.map((item) => (
                                                     <td key={item._id} className="text-center">
-                                                        <input type="checkbox" onChange={() => handleChange(item._id, "products_create")} />
+                                                        <input 
+                                                            type="checkbox" onChange={() => handleChange(item._id, "products_create")} 
+                                                            checked={isChecked(item._id, "products_create")}
+                                                        />
                                                     </td>
                                                 ))}
                                             </tr>
@@ -125,7 +136,10 @@ function Permissions() {
                                                 <td>Chỉnh sửa</td>
                                                 {data.map((item) => (
                                                     <td key={item._id} className="text-center">
-                                                        <input type="checkbox" onChange={() => handleChange(item._id, "products_edit")} />
+                                                        <input type="checkbox" 
+                                                            onChange={() => handleChange(item._id, "products_edit")} 
+                                                            checked={isChecked(item._id, "products_edit")}
+                                                        />
                                                     </td>
                                                 ))}
                                             </tr>
@@ -133,7 +147,112 @@ function Permissions() {
                                                 <td>Xóa</td>
                                                 {data.map((item) => (
                                                     <td key={item._id} className="text-center">
-                                                        <input type="checkbox" onChange={() => handleChange(item._id, "products_delete")} />
+                                                        <input type="checkbox" 
+                                                            onChange={() => handleChange(item._id, "products_delete")} 
+                                                            checked={isChecked(item._id, "products_delete")}
+                                                        />
+                                                    </td>
+                                                ))}
+                                            </tr>
+
+                                            {/* Category */}
+                                            <tr>
+                                                <td colSpan="4">Danh sách mục sản phẩm</td>
+                                            </tr>
+                                            
+                                            <tr >
+                                                <td>Xem</td>
+                                                {data.map((item) => (
+                                                    <td key={item._id} className="text-center">
+                                                        <input
+                                                            type="checkbox"
+                                                            onChange={() => handleChange(item._id, "products-category_views")}
+                                                            checked={isChecked(item._id, "products-category_views")}
+                                                        />
+                                                    </td>
+                                                ))}
+                                            </tr>
+                                            <tr >
+                                                <td>Thêm mới</td>
+                                                {data.map((item) => (
+                                                    <td key={item._id} className="text-center">
+                                                        <input 
+                                                            type="checkbox" onChange={() => handleChange(item._id, "products-category_create")} 
+                                                            checked={isChecked(item._id, "products-category_create")}
+                                                        />
+                                                    </td>
+                                                ))}
+                                            </tr>
+                                            <tr >
+                                                <td>Chỉnh sửa</td>
+                                                {data.map((item) => (
+                                                    <td key={item._id} className="text-center">
+                                                        <input type="checkbox" 
+                                                            onChange={() => handleChange(item._id, "products-category_edit")} 
+                                                            checked={isChecked(item._id, "products-category_edit")}
+                                                        />
+                                                    </td>
+                                                ))}
+                                            </tr>
+                                            <tr >
+                                                <td>Xóa</td>
+                                                {data.map((item) => (
+                                                    <td key={item._id} className="text-center">
+                                                        <input type="checkbox" 
+                                                            onChange={() => handleChange(item._id, "products-category_delete")} 
+                                                            checked={isChecked(item._id, "products-category_delete")}
+                                                        />
+                                                    </td>
+                                                ))}
+                                            </tr>
+
+                                            {/* Role */}
+                                            <tr>
+                                                <td colSpan="4">Nhóm quyền</td>
+                                            </tr>
+                                            
+                                            <tr >
+                                                <td>Xem</td>
+                                                {data.map((item) => (
+                                                    <td key={item._id} className="text-center">
+                                                        <input
+                                                            type="checkbox"
+                                                            onChange={() => handleChange(item._id, "roles_views")}
+                                                            checked={isChecked(item._id, "roles_views")}
+                                                        />
+                                                    </td>
+                                                ))}
+                                            </tr>
+                                            <tr >
+                                                <td>Thêm mới</td>
+                                                {data.map((item) => (
+                                                    <td key={item._id} className="text-center">
+                                                        <input 
+                                                            type="checkbox" onChange={() => handleChange(item._id, "roles_create")} 
+                                                            checked={isChecked(item._id, "roles_create")}
+                                                        />
+                                                    </td>
+                                                ))}
+                                            </tr>
+                                            <tr >
+                                                <td>Chỉnh sửa</td>
+                                                {data.map((item) => (
+                                                    <td key={item._id} className="text-center">
+                                                        <input type="checkbox" 
+                                                            onChange={() => handleChange(item._id, "roles_edit")} 
+                                                            checked={isChecked(item._id, "roles_edit")}
+                                                        />
+                                                    </td>
+                                                ))}
+                                            </tr>
+                                            <tr >
+                                                <td>Xóa</td>
+                                                {data.map((item) => (
+                                                    <td key={item._id} className="text-center">
+                                                        <input type="checkbox" 
+                                                            onChange={() => handleChange(item._id, "roles_delete")} 
+                                                            checked={isChecked(item._id, "roles_delete")}
+                                                        />
                                                     </td>
                                                 ))}
                                             </tr>

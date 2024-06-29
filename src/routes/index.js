@@ -17,6 +17,9 @@ import Permissions from "../Pages/Admin/Role/Permissions";
 import Accounts from '../Pages/Admin/Accounts/Index'
 import CreateAccount from "../Pages/Admin/Accounts/CreateAccount";
 import EditAccount from "../Pages/Admin/Accounts/EditAccount";
+import { patch } from "../utils/request";
+import LayoutLogin from "../Layouts/LayoutLogin";
+import Login from "../Pages/Admin/Auth/Login";
 
 export const routes = [
     {
@@ -97,6 +100,16 @@ export const routes = [
                 path : "accounts/edit/:id",
                 element : < EditAccount />
             },
+        ]
+    },
+    {
+        path : "/admin/auth",
+        element : <LayoutLogin />,
+        children : [
+            {
+                path : 'login',
+                element : <Login />
+            }
         ]
     }
 ]
