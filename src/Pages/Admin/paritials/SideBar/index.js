@@ -1,7 +1,35 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import './SideBar.css'
 import './css2.css'
+import { useEffect, useState } from 'react'
+import { getDetailAcc, logout } from '../../../../service/authService'
+import Cookies from 'universal-cookie'
+
 function SideBar() {
+    const [acc, setAcc] = useState([])
+    const navigate = useNavigate();
+    const cookies = new Cookies();
+
+    useEffect(() => {
+        const fetchApi = async () => {
+            const result = await getDetailAcc()
+            setAcc(result)
+        }
+        fetchApi()
+    }, [])
+
+    const handleClick = (e) => {
+        e.preventDefault();
+        const fetchApi = async () => {
+            const result = await logout()
+            if (result) {
+                cookies.remove('token')
+                navigate('/admin/auth/login');
+            }
+        }
+        fetchApi()
+    }
+    console.log(acc);
     return (
         <>
             <aside className="sidebar">
@@ -58,18 +86,21 @@ function SideBar() {
                         <a href="#"><span className="material-symbols-outlined"> settings </span>Settings</a>
                     </li>
                     <li>
-                        <a href="#"><span className="material-symbols-outlined"> logout </span>Logout</a>
+                        <a href='' onClick={handleClick}><span className="material-symbols-outlined"> logout </span>Logout</a>
                     </li>
                 </ul>
-                {/* <div className="user-account">
-                    <div className="user-profile">
-                        <img src="images/profile-img.jpg" alt="Profile Image" />
-                        <div className="user-detail">
-                            <h3>Eva Murphy</h3>
-                            <span>Web Developer</span>
+                {acc && (
+                    <div className="user-account">
+                        <div className="user-profile">
+                            {/* <img src={acc.image} alt="Profile Image" /> */}
+                            <div className="user-detail">
+                                <h3>{acc.fullName}</h3>
+                                <span>{acc.email}</span>
+                            </div>
                         </div>
                     </div>
-                </div> */}
+                )}
+
             </aside>
         </>
     )
