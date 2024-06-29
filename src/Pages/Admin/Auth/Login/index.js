@@ -3,10 +3,12 @@ import { useState } from 'react'
 import './login.css'
 import { login } from '../../../../service/authService'
 import { useNavigate } from 'react-router-dom';
+import Cookies from 'universal-cookie';
 
 function Login() {
     const [data, setData] = useState([])
     const navigate = useNavigate();
+    const cookies = new Cookies();
 
     const handleChange = (e) => {
         const name = e.target.name
@@ -22,9 +24,11 @@ function Login() {
         e.preventDefault()
         const result = await login(data)
 
+        console.log(result);
         if (result.code === 200) {
             console.log(result.code);
         }else{
+            cookies.set('token', result.token);
             navigate('/admin/dashboard');
         }
     }
