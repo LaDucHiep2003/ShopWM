@@ -12,6 +12,11 @@ export const getProductDetail = async (id) => {
     return result;
 }
 
+export const getProductDetailClient = async (slug) => {
+    const result = await get(`product/detailProduct/${slug}`);
+    return result;
+}
+
 export const statusProduct = async (status) => {
     const result = await get(`product?status=${status}`);
     return result;
