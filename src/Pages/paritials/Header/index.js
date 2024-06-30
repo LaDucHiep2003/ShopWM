@@ -4,6 +4,7 @@ import { FaSearch } from "react-icons/fa";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { FaCartPlus } from "react-icons/fa";
 import { FaUserCircle } from "react-icons/fa";
+import { Link } from 'react-router-dom'
 // import { FaBars } from "react-icons/fa";
 // import { FaRegEnvelope } from "react-icons/fa";
 // import { FaHeadset } from "react-icons/fa";
@@ -16,9 +17,9 @@ function Header() {
                     <div className="row align-items-center">
                         <div className="col-2">
                             <div className="inner-logo">
-                                <a href='/' alt="" >
+                                <Link to="/">
                                     <img className="logo" src="https://res.cloudinary.com/dsxkwbfyq/image/upload/v1718596500/WinMart-Logo-PNG-White_evys3a.png" alt="" />
-                                </a>
+                                </Link>
 
                             </div>
                         </div>

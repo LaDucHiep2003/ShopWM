@@ -23,7 +23,7 @@ function DashBoard() {
                             </div>
                         </div>
                     </div>
-                    <div className='row'>
+                    {/* <div className='row'>
                         <div className='col-6'>
                             <div className='card mb-4'>
                                 <div className='card-header'>Danh mục sản phẩm</div>
@@ -100,7 +100,7 @@ function DashBoard() {
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
 
                 </div>
             </div>

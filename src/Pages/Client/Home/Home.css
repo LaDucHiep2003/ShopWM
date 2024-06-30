@@ -101,12 +101,13 @@
     font-size: 13px;
     border-radius: 5px;
     text-align: center;
-    font-weight: 700;
+    font-weight: 550;
 }
 
-.section-two .inner-product .inner-item .product-name,
-.section-two .inner-product .inner-item .product-unit {
+.section-two .inner-product .inner-item a .product-name,
+.section-two .inner-product .inner-item a .product-unit {
     font-size: 13px;
+    color: #3a3737;
 }
 
 .section-two .inner-product .inner-item .price {

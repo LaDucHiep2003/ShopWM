@@ -1,6 +1,6 @@
 import LayoutDefault from "../Layouts/LayoutDefault";
 import LayoutAdmin from "../Layouts/LayoutAdmin"
-import Home from '../Pages/Home'
+import Home from '../Pages/Client/Home'
 import Error404 from '../Pages/Error404'
 import DashBoard from '../Pages/Admin/DashBoard'
 import Products from "../Pages/Admin/Products/Index";
@@ -20,6 +20,7 @@ import EditAccount from "../Pages/Admin/Accounts/EditAccount";
 import LayoutLogin from "../Layouts/LayoutLogin";
 import Login from "../Pages/Admin/Auth/Login";
 import PriveRoutes from '../Components/PrivateRoutes'
+import Detail from "../Pages/Client/Detail";
 
 export const routes = [
     {
@@ -29,6 +30,10 @@ export const routes = [
             {
                 path: '/',
                 element: <Home />
+            },
+            {
+                path: '/detail/:slug',
+                element: <Detail />
             },
             {
                 path: '*',

@@ -6,7 +6,8 @@ import { FaCartPlus } from "react-icons/fa";
 import { FaAngleDown } from "react-icons/fa";
 // import { FaAngleRight } from "react-icons/fa";
 // import { FaAngleLeft } from "react-icons/fa";
-import { getProductList } from '../../service/productsService';
+import { Link } from 'react-router-dom';
+import { getProductList } from '../../../service/productsService';
 
 // Import Swiper styles
 import 'swiper/css';
@@ -103,18 +104,21 @@ function Home() {
                                 {product.map((item) => (
                                     <div className="col-20" key={item.id}>
                                         <div className="inner-item">
-                                            <p className="discountPercent">{item.discountPercentage}%</p>
-                                            <div className="inner-image">
-                                                <img src={item.thumbnail} alt="" />
-                                            </div>
-                                            <div className="inner-content">
-                                                <p className="product-name">{item.title} </p>
-                                                <p className="product-unit">DVT : Chai</p>
-                                                <div className="price">
-                                                    <div className="price-new">{item.price}</div>
-                                                    <del className="price-old">{item.price}</del>
+                                            <Link to={`detail/${item.slug}`}>
+                                                <p className="discountPercent">{item.discountPercentage}%</p>
+                                                <div className="inner-image">
+                                                    <img src={item.thumbnail} alt="" />
                                                 </div>
-                                            </div>
+                                                <div className="inner-content">
+                                                    <p className="product-name">{item.title} </p>
+                                                    <p className="product-unit">DVT : Chai</p>
+                                                    <div className="price">
+                                                        <div className="price-new">{item.price}</div>
+                                                        <del className="price-old">{item.price}</del>
+                                                    </div>
+                                                </div>
+                                            </Link>
+
 
                                             <div className="inner-add-cart">
                                                 <span>
